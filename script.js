@@ -35,5 +35,26 @@ const org2_depts = [
       children: [{ name: 'investment', children: [] }],
     },
   ]
-    
+  
+function printDepts(depts) {
+  let ul = ulBegin
+  for (const dept of depts) {
+    ul += liBegin
+    ul += dept.name
+    ul += liEnd
 
+    if (dept.children.length !== 0) {
+      ul += printDepts(dept.children)
+    }
+  }
+  ul += ulEnd
+  return ul
+}
+  
+let output = '<h2>Organization 1</h2>'
+output += printDepts(org1_depts)
+
+output += '<h2>Organization 2</h2>'
+output += printDepts(org2_depts)
+
+outputDiv.innerHTML = output
